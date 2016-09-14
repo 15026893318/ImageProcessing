@@ -1,24 +1,42 @@
-#ifndef DRAWER_H
-#define DRAWER_H
+#ifndef DRAWER
+#define DRAWER
 
-#include <QtWidgets/QMainWindow>
-#include <QtWidgets\qmessagebox.h>
-#include <QtWidgets\qdialog.h>
-#include <QtWidgets\qfiledialog.h>
-#include <QtWidgets\qlabel.h>
-#include <QtWidgets\qpushbutton.h>
-#include "ui_drawer.h"
+#include <QMainWindow>
+#include <QImage>
+#include <QPixmap>
+#include <QLabel>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QPainter>
+#include <QInputDialog>
+#include <QMouseEvent>
+#include <QTime>
 
-class Drawer : public QMainWindow
-{
-	Q_OBJECT
+#define OFFSET 23
 
+class Drawer{
 public:
-	Drawer(QWidget *parent = 0);
-	~Drawer();
+
+    int _squareSize = 1;
+    bool _isGrey = false;
+    QImage *_originImage;
+    QImage *_editedImage;
+    QImage *_greyImage;
+    int _imgWidth;
+    int _imgHeight;
+    Drawer(){}
+    ~Drawer();
+    int GetImgwidth();
+    int GetImgheight();
+    void SetImage(QMainWindow *MainWindow);
+    void CaptureColor(int pos_x, int pos_y, int *R, int *G, int *B);
+    void RGBToGrey();
+    void DrawPoint(int pos_x, int pos_y, int R, int G, int B);
+    void DrawSquare(int pos_x, int pos_y, int R, int G, int B);
+    void DrawSpary(int pos_x, int pos_y, int R, int G, int B);
 
 private:
-	Ui::DrawerClass ui;
 };
 
-#endif // DRAWER_H
+#endif // DRAWER
+
