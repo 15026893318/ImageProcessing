@@ -6,15 +6,15 @@ void Drawer::SetImage(QMainWindow *MainWindow)
 {
     QString filename;
         filename=QFileDialog::getOpenFileName(MainWindow,
-                                              QObject::tr("Ñ¡ÔñÍ¼Ïñ"),
+                                              QObject::tr("é€‰æ‹©å›¾åƒ"),
                                               "",
                                               QObject::tr("Images (*.png *.bmp *.jpg *.tif *.GIF )"));
     _originImage = new QImage;
-    if(! ( _originImage->load(filename) ) ) //¼ÓÔØÍ¼Ïñ
+    if(! ( _originImage->load(filename) ) ) //åŠ è½½å›¾åƒ
             {
                 QMessageBox::information(MainWindow,
-                                         QObject::tr("´ò¿ªÍ¼ÏñÊ§°Ü"),
-                                         QObject::tr("´ò¿ªÍ¼ÏñÊ§°Ü!"));
+                                         QObject::tr("æ‰“å¼€å›¾åƒå¤±è´¥"),
+                                         QObject::tr("æ‰“å¼€å›¾åƒå¤±è´¥!"));
                 delete _originImage;
                 return;
             }
@@ -78,12 +78,12 @@ void Drawer::DrawSpary(int pos_x, int pos_y, int R, int G, int B)
 {
     if((pos_y>OFFSET)&&(!_isGrey))
     {
-        for(int i = 0 ;i<100;i++)
+        for(int i = 0 ;i<200;i++)
         {
-            int x=qrand()%20;
-            int RandomX = x-10;
-            int y=qrand()%20;
-            int RandomY = y-10;
+            int x=qrand()%(2*_squareSize);
+            int RandomX = x-_squareSize;
+            int y=qrand()%(2*_squareSize);
+            int RandomY = y-_squareSize;
             if((pos_x+RandomX)>=0&&(pos_x+RandomX)<_imgWidth&&(pos_y-OFFSET+RandomY)>=0&&(pos_y-OFFSET+RandomY)<_imgHeight)
             _editedImage->setPixel(pos_x+RandomX,pos_y-OFFSET+RandomY,qRgb(R,G,B));
         }
@@ -96,12 +96,12 @@ void Drawer::RGBToGrey()
     if(!_isGrey)
     {
         unsigned char *data=_editedImage->bits();
-        int width=_editedImage->width();//Í¼Ïñ¿í
-        int height=_editedImage->height();//Í¼Ïñ¸ß
+        int width=_editedImage->width();//å›¾åƒå®½
+        int height=_editedImage->height();//å›¾åƒé«˜
 
-        int bytePerLine=(width*24+31)/8;//Í¼ÏñÃ¿ĞĞ×Ö½Ú¶ÔÆë
+        int bytePerLine=(width*24+31)/8;//å›¾åƒæ¯è¡Œå­—èŠ‚å¯¹é½
 
-        unsigned char *graydata=new unsigned char[bytePerLine*height];//´æ´¢´¦ÀíºóµÄÊı¾İ
+        unsigned char *graydata=new unsigned char[bytePerLine*height];//å­˜å‚¨å¤„ç†åçš„æ•°æ®
 
         unsigned char r,g,b;
         for (int i=0;i<height;i++)
