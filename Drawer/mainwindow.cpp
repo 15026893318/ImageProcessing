@@ -14,7 +14,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->CaptureColorButton->setEnabled(false);
     ui->RGBToGreyButton->setEnabled(false);
     ui->ChangeColorButton->setEnabled(false);
-
+    ui->PointButton->setEnabled(false);
+    ui->SquareButton->setEnabled(false);
+    ui->SparyButton->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -38,6 +40,9 @@ void MainWindow::on_OpenImageButton_clicked()
     ui->CaptureColorButton->setEnabled(true);
     ui->RGBToGreyButton->setEnabled(true);
     ui->ChangeColorButton->setEnabled(true);
+    ui->PointButton->setEnabled(true);
+    ui->SquareButton->setEnabled(true);
+    ui->SparyButton->setEnabled(true);
     _time= QTime::currentTime();
     qsrand(_time.msec()+_time.second()*1000);
 }
@@ -157,11 +162,6 @@ void MainWindow::on_PointButton_clicked()
 
 void MainWindow::on_SquareButton_clicked()
 {
-    bool ok;
-//    QString SquareSizeStr =QInputDialog::getText(this,tr("SquareSize"),tr("请输入方块边长："),
-//                                         QLineEdit::Normal,QString() ,&ok);
-
-//    _drawer->_squareSize=SquareSizeStr.toInt(&ok,10);
     _setting = Square;
     ui->PointButton->setChecked(false);
     ui->SparyButton->setChecked(false);
