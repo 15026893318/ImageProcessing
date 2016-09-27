@@ -15,7 +15,6 @@ void Drawer::SetImage(QMainWindow *MainWindow)
                 QMessageBox::information(MainWindow,
                                          QObject::tr("打开图像失败"),
                                          QObject::tr("打开图像失败!"));
-                delete _originImage;
                 return;
             }
     _editedImage = new QImage;
